@@ -4,4 +4,6 @@
     <string name="saved">saved</string>
     <string name="error">error</string>
     <string name="saved_article">Saved Article</string>
+    <string name="article_saved">"Article Saved "</string>
+    <string name="no_data">no data :)</string>
 </resources>

@@ -25,7 +25,7 @@ import javax.inject.Singleton
 object Module {
     @Provides
     @Singleton
-    fun apiNewServies(): ApiService {
+    fun apiNewsServes(): ApiService {
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val okHttpClient: OkHttpClient =
             OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS)
@@ -44,8 +44,8 @@ object Module {
 
     @Provides
     @Singleton
-    fun reps(apiService: ApiService , database: ArticleDatabase): Repository {
-        return RepositoryImp(apiService , database =database )
+    fun reps(apiService: ApiService, database: ArticleDatabase): Repository {
+        return RepositoryImp(apiService, database = database)
     }
 
 }

@@ -24,14 +24,12 @@ class NewsApiPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         return try {
 
-            Log.i("abdoalieeeee", "page ${params.key} + ${params.loadSize}")
             val page = params.key ?: 1
-            Log.i("abdoalieeeee", "call $query ")
+//            to show paging ( no anther reason)
             delay(1000)
 
             val responseJson = apiService.search(query = query, page = page)
             val response = apiParsing(JSONObject(responseJson))
-            Log.i("abdoalieeeee", "respons ${response.totalResults}")
             LoadResult.Page(
                 data = response.articles,
                 prevKey = if (page == 1) null else page.minus(1),
@@ -39,7 +37,7 @@ class NewsApiPagingSource(
 
                 )
         } catch (e: Exception) {
-            Log.i("abdoalieeeee", "cha ${e.localizedMessage}")
+            Log.i("abdoalieeeee", "catch ${e.localizedMessage}")
 
             LoadResult.Error(e)
         }

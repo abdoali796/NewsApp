@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
@@ -40,13 +41,10 @@ fun ArticleCart(
         modifier = modifier.padding(8.dp)
     ) {
         Column(modifier.padding(8.dp)) {
-
             Box(
-//                modifier = modifier.size(height = high.dp, width = width.dp)
-
-            ) {
-
-
+                modifier = modifier.clip(MaterialTheme.shapes.medium)
+            )
+            {
                 AsyncImage(
                     model = article.urlToImage,
                     contentDescription = article.description,
@@ -58,17 +56,14 @@ fun ArticleCart(
                 Card(onClick = action) {
                     if (isLocal) {
                         Icon(imageVector = Icons.Default.Close, contentDescription = "Delete")
-
                     } else {
                         Icon(imageVector = Icons.Default.AddCircle, contentDescription = "Save")
-
                     }
                 }
             }
-            Text(text = article.title, style = MaterialTheme.typography.titleLarge)
+            Text(text = article.title, style = MaterialTheme.typography.titleMedium)
             Text(text = article.source.name, style = MaterialTheme.typography.titleSmall)
             Text(text = article.author, style = MaterialTheme.typography.labelSmall)
-
             Text(text = article.description, style = MaterialTheme.typography.bodySmall)
             Text(text = article.url,
                 style = MaterialTheme.typography.bodySmall,
@@ -77,7 +72,6 @@ fun ArticleCart(
                 modifier = Modifier.clickable {
                     uriHandler.openUri(article.url)
                 })
-
             Text(text = article.publishedAt, style = MaterialTheme.typography.labelSmall)
         }
     }
@@ -85,18 +79,18 @@ fun ArticleCart(
 
 @Preview
 @Composable
-fun art() {
-    val Article = Article(
+fun Art() {
+    val article = Article(
         author = "abdo",
         content = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
         description = "dddddddddddddddn;vdibgubnfunsnunucunucf",
         publishedAt = "20000003",
         source = Source(id = "33", "abdoali976"),
-        title = "abdo anjfj jfnvjdcd",
+        title = "abdo anjfj jfnvhhhhhhhhhhhhhhhhhhhhhhhbbbjdcd",
         url = "fkfkf.sfio.sfkm",
-        urlToImage = "http//www.xxx.com"
+        urlToImage = "http//www.uuuunjja.com"
 
     )
-    ArticleCart(article = Article, false, action = {})
+    ArticleCart(article = article, false, action = {})
 
 }

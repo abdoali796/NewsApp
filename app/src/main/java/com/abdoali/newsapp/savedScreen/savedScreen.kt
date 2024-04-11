@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abdoali.newsapp.R
 import com.abdoali.newsapp.uiCompound.ArticleCart
+import com.abdoali.newsapp.uiCompound.NoDate
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +28,9 @@ fun SavedScreen() {
         TopAppBar(title = { Text(text = stringResource(R.string.saved_article)) })
     }) { padding ->
 
+        if (saved.value.isNullOrEmpty()) {
+            NoDate()
+        }
         LazyColumn(
             Modifier.padding(padding)
         ) {

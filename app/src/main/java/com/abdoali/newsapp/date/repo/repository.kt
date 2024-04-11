@@ -15,7 +15,7 @@ import javax.inject.Inject
 interface Repository {
     fun getNews(q: String): Flow<PagingData<Article>>
     suspend fun saveArticle(article: Article)
-     fun getArticle(): Flow<List<Article>>
+    fun getArticle(): Flow<List<Article>>
     suspend fun deleteArticle(title: String)
 }
 
@@ -23,10 +23,7 @@ class RepositoryImp @Inject constructor(
     private val apiService: ApiService,
     private val database: ArticleDatabase
 ) : Repository {
-//    override suspend fun getNews(q: String): NewsApi {
-//        val jsonObject = JSONObject(apiService.search(query = q))
-//        return apiParsing(jsonObject)
-//    }
+
 
     override fun getNews(q: String) = Pager(
 
@@ -38,7 +35,7 @@ class RepositoryImp @Inject constructor(
         database.articleDao().saveArt(article.toArticleEntity())
     }
 
-    override  fun getArticle(): Flow<List<Article>> {
+    override fun getArticle(): Flow<List<Article>> {
         return database.articleDao().getArticle().map { it.map { it.toArticle() } }
     }
 
@@ -46,15 +43,3 @@ class RepositoryImp @Inject constructor(
         database.articleDao().deleteArticle(title)
     }
 }
-/*
-*     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }
-    }
-
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
-        TODO("Not yet implemented")
-    }
-*/

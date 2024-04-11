@@ -1,7 +1,6 @@
 package com.abdoali.newsapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,9 +11,10 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -36,18 +36,18 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
+
                     val navController = rememberNavController()
                     val navback by navController.currentBackStackEntryAsState()
-
                     val currencyScreens = navback?.destination?.route
                     val list = listOf(NavigationScreens.Main, NavigationScreens.Save)
+
                     Scaffold(bottomBar = {
                         NavigationBar {
-
                             list.forEach { navigationScreen ->
                                 NavigationBarItem(selected = navigationScreen.route == currencyScreens,
                                     onClick = {
-navController.navigateSingleTopTo(navigationScreen.route)
+                                        navController.navigateSingleTopTo(navigationScreen.route)
 
                                     },
                                     icon = {
@@ -55,15 +55,15 @@ navController.navigateSingleTopTo(navigationScreen.route)
                                             imageVector = navigationScreen.icon,
                                             contentDescription = navigationScreen.route
                                         )
-                                    })
+                                    },
+                                    label = {
+                                        Text(text = stringResource(id = navigationScreen.label))
+                                    }
 
+                                )
                             }
                         }
                     }) { paddingValues ->
-                        LaunchedEffect(key1 = currencyScreens, block = {
-                            Log.i("currencyScreens", currencyScreens.toString())
-                        })
-
                         NavHost(
                             navController = navController,
                             startDestination = MANIN_SCREEN,
@@ -72,8 +72,6 @@ navController.navigateSingleTopTo(navigationScreen.route)
                             mainScreen()
                             savedScreen()
                         }
-
-
                     }
                 }
             }

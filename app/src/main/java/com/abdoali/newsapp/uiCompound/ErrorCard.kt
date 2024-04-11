@@ -1,5 +1,6 @@
 package com.abdoali.newsapp.uiCompound
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,13 +23,17 @@ fun ErrorCard(
     error: String
 ) {
     Card(
-        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.error), modifier = Modifier
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.error),
+        modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
 
     ) {
         Row(
-            Modifier.padding(16.dp)
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
             Icon(
                 imageVector = Icons.Default.Warning,
