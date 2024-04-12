@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -46,6 +47,7 @@ fun MainScreen() {
     Column {
         OutlinedTextField(value = query,
             onValueChange = vm::updateQuery,
+            placeholder = { Text(text = stringResource(id = R.string.search))},
             trailingIcon = {
                 Icon(Icons.Outlined.Search,
                     contentDescription = stringResource(R.string.search),
